@@ -1,8 +1,9 @@
 name: React News App
 
 on:
-  pull_request:
-    types: [ opened, synchronize, reopened ]
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
 
 jobs:
   build:
