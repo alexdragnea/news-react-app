@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import NewsItem from './NewsItem'
+import React, { useState, useEffect } from 'react';
+import NewsItem from './NewsItem';
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
   const [page, setPage] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [order, setOrder] = useState('DESC');
 
   document.title = `Latest Tech News`;
 
@@ -17,63 +18,72 @@ const News = (props) => {
     UpdateNews(0, searchTerm);
   };
 
-
   const UpdateNews = async (pageNumber, searchTerm) => {
-    let url = `http://localhost:8888/api/v1/news?page=${pageNumber}`;
+    let url = `http://localhost:8888/api/v1/news?page=${pageNumber}&order=${order}`;
     if (searchTerm) {
       url = `http://localhost:8888/api/v1/news/search?keyword=${searchTerm}`;
-      console.log(url);
     }
     try {
       let data = await fetch(url);
       let parsedData = await data.json();
-      console.log(url);
       if (parsedData.news.length > 0) {
         setArticles(parsedData.news);
-        console.log(parsedData);
         setTotalResults(parsedData.totalResults);
-        setError("");
+        setError('');
       } else {
         setArticles([]);
-        setError("No news found.");
+        setError('No news found.');
       }
     } catch (error) {
       console.error(error);
       setArticles([]);
-      setError("Error fetching news. Please try again later.");
+      setError('Error fetching news. Please try again later.');
     }
   };
 
   useEffect(() => {
-    UpdateNews(page);
-  }, [page]);
+    UpdateNews(page, searchTerm);
+  }, [page, order, searchTerm]);
 
   const handleNext = async () => {
     setPage(page + 1);
-    UpdateNews(page + 1);
+    UpdateNews(page + 1, searchTerm);
   };
 
   const handlePrev = async () => {
     setPage(page - 1);
-    UpdateNews(page - 1);
+    UpdateNews(page - 1, searchTerm);
   };
 
-  return (
+  const handleOrderChange = (event) => {
+    setOrder(event.target.value);
+  };
 
+  const isSearchTermPresent = searchTerm.trim().length > 0;
+
+  return (
     <div className="container my-3 news">
-      <form className="d-flex" role="search" onSubmit={handleSearch}>
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="btn btn-outline-success" type="submit">
-          Search
-        </button>
-      </form>
+      <div className="d-flex align-items-center">
+        <form className="d-flex flex-grow-1 ms-2" role="search" onSubmit={handleSearch}>
+          <input
+            className="form-control me-1"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="btn news-button" type="submit">
+            Search
+          </button>
+        </form>
+        <div className="form-check form-switch ms-2">
+          <select className="form-select form-select-sm" value={order} onChange={handleOrderChange} disabled={searchTerm !== ""}>
+            <option value="DESC">Newest first</option>
+            <option value="ASC">Oldest first</option>
+          </select>
+        </div>
+      </div>
       {error && <div className="alert alert-danger">{error}</div>}
       <div className="row">
         {articles.map((element) => {
