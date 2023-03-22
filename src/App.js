@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import News from './components/News';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import LoadingBar from 'react-top-loading-bar'
 
-export default App;
+export default class App extends Component {
+
+  state = {
+    progress: 0
+  }
+
+  setProgress = (progress) => {
+    this.setState({ progrss: progress })
+  }
+
+
+  render() {
+    return (
+      <div>
+        <Router>
+          <LoadingBar
+            color='#f11946'
+            progress={this.state.progress}
+          />
+          <Navbar />
+          <Switch>
+            <Route exact path="/"><News /></Route>
+          </Switch>
+        </Router>
+      </div>
+    )
+  }
+}
