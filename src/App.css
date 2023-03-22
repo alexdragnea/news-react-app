@@ -1,3 +1,10 @@
+.navbar
+{
+  background-color: rgba(0, 0, 0, 0.837);
+  font-size: 20px;
+  font-family: 'Anton', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -7,14 +14,15 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-brand{
+  color: whitesmoke;
+}
+.nav-link
+{
+  color:blanchedalmond;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +43,69 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.news
+{
+  padding:70px;
+}
+
+.card {
+  border: 5px solid rgba(107, 98, 98, 0.249);
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgba(107, 98, 98, 0.601);
+  overflow: hidden;
+  width: 400px;
+}
+
+.card-title {
+  height: 60px; /* adjust as needed */
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.card-title:hover {
+  -webkit-line-clamp: unset; /* show full title on hover */
+  cursor: pointer;
+}
+
+.card-title[title]:hover:after {
+  content: attr(title);
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px;
+  left: 0;
+  bottom: 100%;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+.news-page {
+  background-color: #1e2c3b;
+  color: #fff;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.news-button {
+  background-color: #1e2c3b;
+  border-color: #00fff2;
+  color: #fde7e7;
+}
+
+.news-button:hover {
+  background-color: #4e347b;
+  font-weight: bold;
+  border-color: #1e2c3b;
+  color: #007bff;
+}
+
+.alert {
+  margin-top: 20px;
 }
