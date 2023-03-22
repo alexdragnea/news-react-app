@@ -3,7 +3,6 @@ import NewsItem from './NewsItem'
 
 const News = (props) => {
   const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [error, setError] = useState('');
@@ -31,19 +30,16 @@ const News = (props) => {
       console.log(url);
       if (parsedData.news.length > 0) {
         setArticles(parsedData.news);
-        setLoading(false);
         console.log(parsedData);
         setTotalResults(parsedData.totalResults);
         setError("");
       } else {
         setArticles([]);
-        setLoading(false);
         setError("No news found.");
       }
     } catch (error) {
       console.error(error);
       setArticles([]);
-      setLoading(false);
       setError("Error fetching news. Please try again later.");
     }
   };
