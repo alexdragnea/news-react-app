@@ -9,7 +9,7 @@ const NewsItem = (props) => {
 
     return (
         <div className="card">
-            <img src={imgSrc} style={{ height: "150px", objectFit: "cover" }} />
+            <img src={imgSrc} alt="No image Present" style={{ height: "150px", objectFit: "cover" }} />
             <div className="card-body">
                 <h5 className="card-title" title={title} onClick={handleClick}>{title}</h5>
                 <h6>Source <b>{source}</b></h6>
