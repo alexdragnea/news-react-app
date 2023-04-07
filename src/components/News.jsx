@@ -64,7 +64,7 @@ const News = (props) => {
   return (
     <div className="container my-3 news">
       <div className="d-flex align-items-center">
-        <form className="d-flex flex-grow-1 ms-2" role="search" onSubmit={handleSearch}>
+        {/* <form className="d-flex flex-grow-1 ms-2" role="search" onSubmit={handleSearch}>
           <input
             className="form-control me-1"
             type="search"
@@ -76,7 +76,7 @@ const News = (props) => {
           <button className="btn news-button" type="submit">
             Search
           </button>
-        </form>
+        </form> */}
         <div className="form-check form-switch ms-2">
           <select className="form-select form-select-sm" value={order} onChange={handleOrderChange} disabled={searchTerm !== ""}>
             <option value="DESC">Newest first</option>
