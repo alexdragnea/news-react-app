@@ -12,9 +12,9 @@ const NewsItem = (props) => {
             <img src={imgSrc} alt="No source" style={{ height: "150px", objectFit: "cover" }} />
             <div className="card-body">
                 <h5 className="card-title" title={title} onClick={handleClick}>{title}</h5>
-                <h6>Source <b>{source}</b></h6>
-                <p><b>{new Date(scrapeddatetime).toLocaleDateString()}</b></p>
-                <button className="btn btn-dark" onClick={handleClick}>Go</button>
+                <h6 style={{ marginTop: '22px' }}>Source {source}</h6>
+                <p style={{ marginTop: '-10px' }}><b>{new Date(scrapeddatetime).toLocaleDateString()}</b></p>
+                <button className="btn btn-dark" style={{ marginTop: '-20px' }} onClick={handleClick}>Go</button>
             </div>
         </div>
     );

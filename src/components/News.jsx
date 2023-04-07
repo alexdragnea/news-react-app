@@ -19,9 +19,9 @@ const News = (props) => {
   };
 
   const UpdateNews = async (pageNumber, searchTerm) => {
-    let url = `http://localhost:8888/api/v1/news?page=${pageNumber}&order=${order}`;
+    let url = `http://localhost:5000/api/v1/news?page=${pageNumber}&order=${order}`;
     if (searchTerm) {
-      url = `http://localhost:8888/api/v1/news/search?keyword=${searchTerm}`;
+      url = `http://localhost:5000/api/v1/news/search?keyword=${searchTerm}`;
     }
     try {
       let data = await fetch(url);
