@@ -68,8 +68,6 @@ const News = (props) => {
     setOrder(event.target.value);
   };
 
-  const isSearchTermPresent = searchTerm.trim().length > 0;
-
   return (
     <div className="container my-3 news">
       <div className="d-flex align-items-center">
