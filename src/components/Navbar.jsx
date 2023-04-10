@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const handleScrapeNews = () => {
-        fetch('http://localhost:5000/api/v1/scrapenews')
+        fetch('http://localhost:5000/api/v1/scrapenews', {
+            headers: {
+                'api-key': 'addb082f-e940-4bc7-acec-060fe4434ded'
+            }
+        })
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);

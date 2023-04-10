@@ -19,13 +19,22 @@ const News = (props) => {
   };
 
   const UpdateNews = async (pageNumber, searchTerm) => {
+    const apiKey = 'addb082f-e940-4bc7-acec-060fe4434ded';
+    console.log(apiKey);
     let url = `http://localhost:5000/api/v1/news?page=${pageNumber}&order=${order}`;
     if (searchTerm) {
       url = `http://localhost:5000/api/v1/news/search?keyword=${searchTerm}`;
     }
     try {
-      let data = await fetch(url);
-      let parsedData = await data.json();
+      const headers = new Headers();
+      headers.append('api-key', apiKey);
+      console.log(headers);
+
+      const data = await fetch(url, {
+        headers: headers
+      });
+      const parsedData = await data.json();
+      console.log(parsedData);
       if (parsedData.news.length > 0) {
         setArticles(parsedData.news);
         setTotalResults(parsedData.totalResults);
