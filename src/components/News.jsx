@@ -52,7 +52,7 @@ const News = (props) => {
 
   useEffect(() => {
     UpdateNews(page, searchTerm);
-  }, [page, order, searchTerm]);
+  }, [page, order, searchTerm, UpdateNews]);
 
   const handleNext = async () => {
     setPage(page + 1);
