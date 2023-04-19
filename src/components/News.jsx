@@ -30,6 +30,9 @@ const News = (props) => {
       headers.append('api-key', apiKey);
       console.log(headers);
 
+      // Clear articles state before fetching new data
+      setArticles([]);
+
       const data = await fetch(url, {
         headers: headers
       });
@@ -52,7 +55,7 @@ const News = (props) => {
 
   useEffect(() => {
     UpdateNews(page, searchTerm);
-  }, [page, order, searchTerm, UpdateNews]);
+  }, [page, order, searchTerm]);
 
   const handleNext = async () => {
     setPage(page + 1);
